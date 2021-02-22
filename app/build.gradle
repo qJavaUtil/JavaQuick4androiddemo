@@ -22,6 +22,7 @@ android {
     }
 }
 
+// 强制清除缓存 gradlew build --refresh-dependencies
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -33,12 +34,12 @@ dependencies {
 
 //    implementation 'org.blxt:qtime:1.0.0'
 //    implementation 'org.blxt:qtools:1.0.0'
-    //    implementation 'org.blxt:auto-value:1.0.0'
-
-   implementation files('libs/auto-value-1.0.0.jar')
+//    implementation 'org.blxt:auto-value:1.0.0'
+//    implementation 'org.blxt:qproperties:1.0.0'
+//    implementation 'org.blxt:qtools:1.0.0'
 
     implementation 'com.google.guava:guava:29.0-jre'
     implementation 'org.javassist:javassist:3.27.0-GA'
-    implementation 'com.blxt.Qandroid:quickfile4a:1.1.1'
+    implementation 'com.blxt.Qandroid:quickfile4a:1.1.2'
 
 }

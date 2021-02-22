@@ -18,8 +18,6 @@ import blxt.qjava.autovalue.reflect.PackageUtil;
 import blxt.qjava.autovalue.util.ObjectPool;
 import blxt.qjava.autovalue.util.QThreadpool;
 import blxt.qjava.autovalue.util.ValueFactory;
-import com.blxt.qfile.QFile;
-import com.blxt.quickfile4a.QFile4a;
 import com.example.qjava4a.config.AppConfiguration;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -43,19 +41,13 @@ public class MainActivity extends AppCompatActivity {
         //boolean falSetAccessible = JavaVersionUtils.getJDKVersion() <= 52;
         tvHellow = (TextView) findViewById(R.id.tv_hellow);
 
-        AppConfiguration appConfiguration = (AppConfiguration)ObjectPool.getObject(AppConfiguration.class);
 
         try {
             InputStream in = this.getAssets().open("config/application.properties");
             AutoValue.setPropertiesFile(in, "utf-8");
             ValueFactory valueFactory = new ValueFactory();
             valueFactory.autoVariable(AppConfiguration.class, true);
-            appConfiguration = (AppConfiguration)ObjectPool.getObject(AppConfiguration.class);
-
-            System.out.println("结果:" + appConfiguration.toString());
-
-            tvHellow.setText("结果:" + appConfiguration.toString());
-            //   autoValue.autoVariable(QThreadpool.class, true);
+            valueFactory.autoVariable(QThreadpool.class, true);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,30 +55,17 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 //            Scanner.scan();
-             QJavaApplication.run(MainActivity.class);
+//             QJavaApplication.run(MainActivity.class);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
 
+        AppConfiguration appConfiguration = (AppConfiguration)ObjectPool.getObject(AppConfiguration.class);
+        QThreadpool pool = (QThreadpool)ObjectPool.getObject(QThreadpool.class);
 
-        QThreadpool qThreadpool = (QThreadpool)ObjectPool.getObject(QThreadpool.class);
-        System.out.println( "结果:" + appConfiguration.toString());
+        System.out.println("结果:" + appConfiguration.toString());
 
-        // 获取f对象对应类中的所有属性域
-        Field[] fields = AppConfiguration.class.getDeclaredFields();
-        // 遍历属性
-        for (Field field : fields) {
-            // 过滤 final 元素
-            if ((field.getModifiers() & 16) != 0) {
-                continue;
-            }
-
-            Value valuename = field.getAnnotation(Value.class);
-            if(valuename != null){
-                System.out.println("元素:" + valuename.value().trim());
-            }
-
-        }
+        tvHellow.setText("结果:" + appConfiguration.toString());
 
         //       Scanner.scan();
 

@@ -26,5 +26,10 @@
       <option name="name" value="maven" />
       <option name="url" value="http://maven.zhangjialei.cn:8083/repository/maven-public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="http://47.242.60.114:21003/repository/maven-public/" />
+    </remote-repository>
   </component>
 </project>
